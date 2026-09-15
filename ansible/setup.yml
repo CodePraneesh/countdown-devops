@@ -1,0 +1,21 @@
+---
+- name: Configure Countdown DevOps Server
+  hosts: local
+  become: true
+
+  tasks:
+    - name: Ensure Docker is running
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Ensure k3s is running
+      ansible.builtin.service:
+        name: k3s
+        state: started
+        enabled: true
+
+    - name: Display configuration message
+      ansible.builtin.debug:
+        msg: "Docker and k3s are running successfully!"
